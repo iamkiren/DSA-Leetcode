@@ -1,26 +1,20 @@
 class Solution {
     public int[] createTargetArray(int[] nums, int[] index) {
-       int len = nums.length;
-
-        int[] result = new int[len];
-        Arrays.fill(result, -1);
-
-        for (int i = 0; i < len; i++) {
-            if (result[index[i]] == -1) {
-                result[index[i]] = nums[i];
-            } else {
-                int currentIndex = index[i];
-                int currentValue = nums[i];
-                int temp;
-
-                while (currentIndex <= i) {
-                    temp = result[currentIndex];
-                    result[currentIndex] = currentValue;
-                    currentValue = temp;
-                    currentIndex++;
-                }
-            }
+        int[] res = new int[nums.length];
+        
+        for(int i = 0; i < nums.length; i++)
+        {
+            int idx = index[i];
+            
+            if(idx < i)
+            {
+                for(int j = i; j > idx; j--)
+                    res[j] = res[j-1];
+            } 
+            
+            res[idx] = nums[i];
         }
-        return result; 
+        
+        return res;
     }
 }
