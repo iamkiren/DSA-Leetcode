@@ -1,17 +1,18 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int[] frequencyArray = new int[nums.length + 1];
+        int length = nums.length;
 
-        for (int i = 0; i < nums.length; i++) {
-            frequencyArray[nums[i]] = -1;
-        }
-        int j;
-        for (j = 0; j < nums.length; j++) {
-            if (frequencyArray[j] != -1) {
-                return j;
-            }
+        int sum = (length * (length + 1)) / 2;
+
+        int arraySum = 0;
+        for (int i = 0; i < length; i++) {
+            arraySum += nums[i];
         }
 
-        return j;
+        if (arraySum == sum) {
+            return 0;
+        } else {
+            return (sum - arraySum);
+        }
     }
 }
