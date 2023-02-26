@@ -1,13 +1,17 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        Arrays.sort(nums);
-        int length = nums.length;
-        int i;
-        for ( i = 0; i < length; i++) {
-            if (nums[i] != i) {
-                return i;
+        int[] frequencyArray = new int[nums.length + 1];
+
+        for (int i = 0; i < nums.length; i++) {
+            frequencyArray[nums[i]] = -1;
+        }
+        int j;
+        for (j = 0; j < nums.length; j++) {
+            if (frequencyArray[j] != -1) {
+                return j;
             }
         }
-        return i;
+
+        return j;
     }
 }
