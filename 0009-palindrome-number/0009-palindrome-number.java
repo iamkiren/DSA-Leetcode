@@ -1,19 +1,16 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if(x < 0) return false;
-        String number = Integer.toString(x);
-
-        int low = 0;
-        int high = number.length() - 1;
-
-        while(low < high){
-            if(number.charAt(low) != number.charAt(high)){
-                return false;
-            }else{
-                low++;
-                high--;
-            }
+        if(x < 0) {
+	        return false;
         }
-        return true;
+
+        int y = x;
+        int z = 0;
+        while(y > 0){
+            z = z * 10 + y % 10;
+            y = y / 10;
+        }	
+
+        return x == z;
     }
 }
