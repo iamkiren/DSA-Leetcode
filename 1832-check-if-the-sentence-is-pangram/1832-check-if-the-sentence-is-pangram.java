@@ -1,19 +1,17 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        int[] arr = new int[123];
-
-        for (int i = 0; i < sentence.length(); i++) {
-            arr[sentence.charAt(i)]++;
+        if(sentence.length()<26)return false;
+        boolean[] letters  = new boolean[26];
+        
+        for(char c : sentence.toCharArray()) {
+            letters[c - 'a'] = true;
         }
-
-        int count = 0;
-
-        for (int  i = 97; i < 123; i++) {
-            if (arr[i] >= 1) {
-                count++;
-            }
+        
+        //find any letter that not exist
+        for(boolean existLetter : letters) {
+            if(!existLetter) return false;
         }
-
-        return count == 26;
+        
+        return true;
     }
 }
