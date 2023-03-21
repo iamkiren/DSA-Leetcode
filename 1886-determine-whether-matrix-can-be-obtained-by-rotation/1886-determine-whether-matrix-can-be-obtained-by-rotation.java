@@ -1,12 +1,15 @@
 class Solution {
     public boolean findRotation(int[][] mat, int[][] target) {
         int l = mat.length;
-        int[][] arr = mat;
         int i = 1;
 
-        while (i <= 4) {
-            arr = rotate(arr, l);
-            if (Arrays.deepEquals(target, arr) == true) {
+        if (Arrays.deepEquals(target, mat) == true) {
+                return true;
+            }
+
+        while (i < 4) {
+            mat = rotate(mat, l);
+            if (Arrays.deepEquals(target, mat) == true) {
                 return true;
             }
 
@@ -17,15 +20,25 @@ class Solution {
     }
 
     public int[][] rotate(int[][] mat, int l) {
-        int[][] arr = new int [l][l];
 
-
-        for (int i = 0 ; i < l ; i++) {
-            for (int j = 0 ; j < l ; j++) {
-                arr[j][l - 1 - i] = mat[i][j];
+     //transpose   
+        for(int i = 0 ; i < l ; i++){
+            for(int j = i + 1 ; j < l ; j++){
+                int temp = mat[i][j];
+                mat[i][j] = mat[j][i];
+                mat[j][i] = temp;
             }
         }
 
-        return arr;
+//reversing rows
+        for (int i = 0 ; i < l ; i++) {
+            for (int j = 0 ; j < l/2 ; j++) {
+                int temp = mat[i][j];
+                mat[i][j] = mat[i][l-1-j];
+                mat[i][l-1-j] = temp;
+            }
+        }
+
+        return mat;
     }
 }
