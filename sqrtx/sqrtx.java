@@ -6,7 +6,7 @@ class Solution {
 		int start = 2, end = x / 2;
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
-			long sq = (long) mid * mid;
+			long sq = (long) mid * mid;// Use long data type to avoid integer overflow
 			if (sq > x)
 				end = mid - 1;
 			else if (sq < x)
