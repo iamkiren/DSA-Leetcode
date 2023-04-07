@@ -1,22 +1,19 @@
 class Solution {
 	public int mySqrt(int x) {
-		if (x == 0) return 0;
-		int start = 1;
-		int end   = x;
+		if (x < 2) {
+			return x;
+		}
+		int start = 2, end = x / 2;
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
-			long square = (long) mid * mid; // Use long data type to avoid integer overflow
-			if (square == x) {
-				return mid;
-			}
-
-			if (square > x) {
+			long sq = (long) mid * mid;
+			if (sq > x)
 				end = mid - 1;
-			} else {
+			else if (sq < x)
 				start = mid + 1;
-			}
+			else
+				return mid;
 		}
-
 		return end;
 	}
 }
